@@ -2,6 +2,9 @@ import numpy as np
 import scipy.misc
 import os
 import torch
+import imageio
+import cv2
+
 
 class CASIA_Face(object):
     def __init__(self, root):
@@ -24,7 +27,7 @@ class CASIA_Face(object):
     def __getitem__(self, index):
         img_path = self.image_list[index]
         target = self.label_list[index]
-        img = scipy.misc.imread(img_path)
+        img = imageio.imread(img_path)
 
         if len(img.shape) == 2:
             img = np.stack([img] * 3, 2)
